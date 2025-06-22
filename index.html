@@ -500,66 +500,70 @@
                     day: 'numeric'
                 });
             }
-            
-           // Philippines time (PHT - UTC+8)
             const philippinesTimeElement = document.getElementById('philippines-time');
             const philippinesDateElement = document.getElementById('philippines-date');
             
             if (philippinesTimeElement && philippinesDateElement) {
-                philippinesTimeElement.textContent = now.toLocaleTimeString('en-US', {
+                const philippinesTimeFormatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'Asia/Manila',
                     hour: 'numeric',
                     minute: '2-digit',
-                    hour12: true,
-                    timeZone: 'Asia/Manila'
+                    hour12: true
                 });
-                philippinesDateElement.textContent = now.toLocaleDateString('en-US', {
+                const philippinesDateFormatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'Asia/Manila',
                     weekday: 'short',
                     month: 'short',
-                    day: 'numeric',
-                    timeZone: 'Asia/Manila'
+                    day: 'numeric'
                 });
+                
+                philippinesTimeElement.textContent = philippinesTimeFormatter.format(now);
+                philippinesDateElement.textContent = philippinesDateFormatter.format(now);
             }
             
-            // US time (New York)
             const usTimeElement = document.getElementById('us-time');
             const usDateElement = document.getElementById('us-date');
             
             if (usTimeElement && usDateElement) {
-                usTimeElement.textContent = now.toLocaleTimeString('en-US', {
+                const usTimeFormatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'America/New_York',
                     hour: 'numeric',
                     minute: '2-digit',
-                    hour12: true,
-                    timeZone: 'America/New_York'
+                    hour12: true
                 });
-                usDateElement.textContent = now.toLocaleDateString('en-US', {
+                const usDateFormatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'America/New_York',
                     weekday: 'short',
                     month: 'short',
-                    day: 'numeric',
-                    timeZone: 'America/New_York'
+                    day: 'numeric'
                 });
+                
+                usTimeElement.textContent = usTimeFormatter.format(now);
+                usDateElement.textContent = usDateFormatter.format(now);
             }
             
-            // Australia time (Sydney)
             const australiaTimeElement = document.getElementById('australia-time');
             const australiaDateElement = document.getElementById('australia-date');
             
             if (australiaTimeElement && australiaDateElement) {
-                australiaTimeElement.textContent = now.toLocaleTimeString('en-US', {
+                const australiaTimeFormatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'Australia/Sydney',
                     hour: 'numeric',
                     minute: '2-digit',
-                    hour12: true,
-                    timeZone: 'Australia/Sydney'
+                    hour12: true
                 });
-                australiaDateElement.textContent = now.toLocaleDateString('en-US', {
+                const australiaDateFormatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'Australia/Sydney',
                     weekday: 'short',
                     month: 'short',
-                    day: 'numeric',
-                    timeZone: 'Australia/Sydney'
+                    day: 'numeric'
                 });
+                
+                australiaTimeElement.textContent = australiaTimeFormatter.format(now);
+                australiaDateElement.textContent = australiaDateFormatter.format(now);
             }
         }
 
-        // Update clocks immediately and then every second
         updateClocks();
         setInterval(updateClocks, 1000);
     </script>
