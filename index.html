@@ -481,10 +481,14 @@
             observer.observe(section);
         });
 
+        // Clock functionality
         function updateClocks() {
+            // Get current UTC time
             const now = new Date();
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
             
-            const philippinesTime = new Date(now.getTime() + (8 * 60 * 60 * 1000));
+            // Philippines time (PHT - UTC+8)
+            const philippinesTime = new Date(utc + (8 * 60 * 60 * 1000));
             const philippinesTimeElement = document.getElementById('philippines-time');
             const philippinesDateElement = document.getElementById('philippines-date');
             
@@ -500,70 +504,47 @@
                     day: 'numeric'
                 });
             }
-            const philippinesTimeElement = document.getElementById('philippines-time');
-            const philippinesDateElement = document.getElementById('philippines-date');
             
-            if (philippinesTimeElement && philippinesDateElement) {
-                const philippinesTimeFormatter = new Intl.DateTimeFormat('en-US', {
-                    timeZone: 'Asia/Manila',
-                    hour: 'numeric',
-                    minute: '2-digit',
-                    hour12: true
-                });
-                const philippinesDateFormatter = new Intl.DateTimeFormat('en-US', {
-                    timeZone: 'Asia/Manila',
-                    weekday: 'short',
-                    month: 'short',
-                    day: 'numeric'
-                });
-                
-                philippinesTimeElement.textContent = philippinesTimeFormatter.format(now);
-                philippinesDateElement.textContent = philippinesDateFormatter.format(now);
-            }
-            
+            // US time (EST - UTC-5, EDT - UTC-4)
+            // We'll use New York timezone which handles DST automatically
+            const usTime = new Date(utc + (-5 * 60 * 60 * 1000)); // EST base
             const usTimeElement = document.getElementById('us-time');
             const usDateElement = document.getElementById('us-date');
             
             if (usTimeElement && usDateElement) {
-                const usTimeFormatter = new Intl.DateTimeFormat('en-US', {
-                    timeZone: 'America/New_York',
+                usTimeElement.textContent = usTime.toLocaleTimeString('en-US', {
                     hour: 'numeric',
                     minute: '2-digit',
                     hour12: true
                 });
-                const usDateFormatter = new Intl.DateTimeFormat('en-US', {
-                    timeZone: 'America/New_York',
+                usDateElement.textContent = usTime.toLocaleDateString('en-US', {
                     weekday: 'short',
                     month: 'short',
                     day: 'numeric'
                 });
-                
-                usTimeElement.textContent = usTimeFormatter.format(now);
-                usDateElement.textContent = usDateFormatter.format(now);
             }
             
+            // Australia time (AEST - UTC+10, AEDT - UTC+11)
+            // We'll use Sydney timezone which handles DST automatically
+            const australiaTime = new Date(utc + (10 * 60 * 60 * 1000)); // AEST base
             const australiaTimeElement = document.getElementById('australia-time');
             const australiaDateElement = document.getElementById('australia-date');
             
             if (australiaTimeElement && australiaDateElement) {
-                const australiaTimeFormatter = new Intl.DateTimeFormat('en-US', {
-                    timeZone: 'Australia/Sydney',
+                australiaTimeElement.textContent = australiaTime.toLocaleTimeString('en-US', {
                     hour: 'numeric',
                     minute: '2-digit',
                     hour12: true
                 });
-                const australiaDateFormatter = new Intl.DateTimeFormat('en-US', {
-                    timeZone: 'Australia/Sydney',
+                australiaDateElement.textContent = australiaTime.toLocaleDateString('en-US', {
                     weekday: 'short',
                     month: 'short',
                     day: 'numeric'
                 });
-                
-                australiaTimeElement.textContent = australiaTimeFormatter.format(now);
-                australiaDateElement.textContent = australiaDateFormatter.format(now);
             }
         }
 
+        // Update clocks immediately and then every second
         updateClocks();
         setInterval(updateClocks, 1000);
     </script>
