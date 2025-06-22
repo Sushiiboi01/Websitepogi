@@ -56,6 +56,11 @@
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(162, 89, 230, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
         }
 
         .floating {
@@ -299,7 +304,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Virtual Assistant Card -->
                 <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000"
-                    class="group service-card rounded-2xl p-8 flex flex-col items-center text-center transition-all duration-300 min-h-[350px] justify-center hover:scale-105">
+                    class="group service-card rounded-2xl p-8 flex flex-col items-center text-center min-h-[350px] justify-center">
                     <div class="mb-6 text-center">
                         <i class="fas fa-laptop-code text-4xl text-purple-600 mb-4 transition-transform duration-300 group-hover:-translate-y-2"></i>
                         <h3
@@ -316,7 +321,7 @@
 
                 <!-- Social Media Manager Card -->
                 <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000"
-                    class="group service-card rounded-2xl p-8 flex flex-col items-center text-center transition-all duration-300 min-h-[350px] justify-center hover:scale-105">
+                    class="group service-card rounded-2xl p-8 flex flex-col items-center text-center min-h-[350px] justify-center">                   
                     <div class="mb-6 text-center">
                         <i class="fas fa-share-alt text-4xl text-purple-600 mb-4 transition-transform duration-300 group-hover:-translate-y-2"></i>
                         <h3
@@ -334,7 +339,7 @@
 
                 <!-- Graphic Design Card -->
                 <div data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000"
-                    class="group service-card rounded-2xl p-8 flex flex-col items-center text-center transition-all duration-300 min-h-[350px] justify-center hover:scale-105">
+                    class="group service-card rounded-2xl p-8 flex flex-col items-center text-center min-h-[350px] justify-center">       
                     <div class="mb-6 text-center">
                         <i class="fas fa-paint-brush text-4xl text-purple-600 mb-4 transition-transform duration-300 group-hover:-translate-y-2"></i>
                         <h3
